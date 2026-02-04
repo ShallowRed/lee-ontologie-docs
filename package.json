@@ -1,0 +1,23 @@
+{
+  "name": "lee-ontologie-docs",
+  "version": "1.0.0",
+  "description": "Documentation ontologique de la plateforme Les Entreprises s'Engagent",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "ontologie",
+    "documentation",
+    "les-entreprises-s-engagent"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mermaid": "^11.12.2",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-mermaid": "^2.0.17"
+  }
+}
