@@ -19,8 +19,7 @@ graph TB
     end
     
     subgraph "Entreprise membre"
-        ENT[Entreprise] -->|déclare| AMB[Ambition]
-        AMB -->|vise| OBJ[Objectif]
+        ENT[Entreprise] -->|déclare| AMB["Ambition<br/><small>(+ objectif chiffré optionnel)</small>"]
         AMB -->|devient| REAL[Réalisation]
         ENT -->|possède| STAT[Statuts explicites]
     end
@@ -59,8 +58,18 @@ Catégorie regroupant des `Initiatives` liées à un même domaine d'action. Le 
 
 > *Exemples : "Sobriété énergétique", "Inclusion des jeunes", "Égalité professionnelle"*
 
-#### Objectif chiffré
-Valeur quantitative associée à une `Ambition`, représentant le niveau d'engagement mesurable. Le concept est conservé mais devient un attribut de l'`Ambition`.
+### Ce qui disparaît
+
+#### Objective (entité Hygraph)
+
+L'entité `Objective` Hygraph n'est pas un objectif métier mais un **prompt de formulaire** (ex: *"Combien de jeunes peuvent être recrutés cette année ?"*). Elle est supprimée :
+
+- Le `label` (question) devient un attribut de l'`Initiative`
+- La valeur saisie devient un attribut de l'`Ambition`
+
+L'objectif chiffré n'est donc plus une entité distincte mais un simple couple question/valeur porté par l'`Initiative` et l'`Ambition`.
+
+> *Exemple : L'Initiative "Recruter des jeunes" porte la question "Combien de jeunes peuvent être recrutés cette année ?". L'Ambition de l'entreprise X pour 2026 contient `objectifValeur: 15`.*
 
 ## Structure du référentiel
 
@@ -73,7 +82,7 @@ Axe (nouveau)
   └── Thématique (ActionsCategory)
         └── Sous-thématique (SubActionsCategory)
               └── Engagement (SubCommitment)
-                    └── Objectif
+                    └── Objectif (prompt de formulaire)
 ```
 
 La proposition supprime le niveau Sous-thématique pour aboutir à une hiérarchie à trois niveaux :

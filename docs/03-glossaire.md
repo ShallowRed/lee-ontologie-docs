@@ -9,18 +9,22 @@ Ce glossaire constitue la référence partagée pour tous les échanges concerna
 - 🔵 Terme ou concept existant dans le système actuel
 - 🟢 Terme ou concept proposé dans le cadre de la refonte
 
-
 ## Types d'acteurs
 
 ### 🔵 Entreprise membre
 
-Entité légale identifiée par un SIRET, représentant une entreprise inscrite sur la plateforme. C'est l'acteur central du dispositif.
+Entité légale identifiée par un SIRET, enregistrée dans le système d'information de la plateforme. C'est l'acteur central du dispositif.
+
+🟢 Une `Entreprise membre` possède deux statuts indépendants :
+- **`Statut d'inscription`** : relation technique avec la webapp (non invitée, invitée, inscrite, refusée, désinscrite)
+- **`Statut de certification`** : reconnaissance comme membre actif de la communauté (non proposée, proposée, certifiée, refusée, retirée)
+
+> Voir [Cycles de vie](./04-cycles-de-vie.md) pour le détail des parcours et combinaisons possibles.
 
 *Entité Prisma : `Members`*
 *Espace dédié : `/espace-membre/`*
 
-Ne pas utiliser "membre" seul (terme réservé aux Organisations Professionnelles).
-
+Ne pas utiliser "membre" seul (ambigu entre l'entité, le statut de certification).
 
 ### 🔵 Organisation professionnelle
 
@@ -42,7 +46,7 @@ Structure départementale animant la communauté localement. Chaque club est ani
 
 ### 🔵 Animateur club
 
-Personne physique responsable de l'animation d'un Club territorial. Dispose d'un accès à l'espace club pour saisir des prospects et suivre les entreprises du territoire.
+Personne physique responsable de l'animation d'un `Club territorial`. Dispose d'un accès à l'espace club pour saisir des prospects et suivre les entreprises du territoire.
 
 *Entité Prisma : `ClubCompte`*
 
@@ -66,14 +70,14 @@ Structure de mise en relation entre demandeurs d'emploi et entreprises, basée s
 
 ### 🔵 Compte utilisateur
 
-Utilisateur authentifié de la plateforme, identifié par son adresse email. Un même compte peut être lié à plusieurs entités (entreprise, Organisation professionnelle, club).
+Utilisateur authentifié de la plateforme, identifié par son adresse email. Un même compte peut être lié à plusieurs entités (entreprise, `Organisation professionnelle`, club).
 
 *Entité Prisma : `Compte`*
 
 
 ### 🔵 Personne contact
 
-Lien entre un Compte utilisateur et une Entreprise membre. Représente le rôle d'une personne physique au sein d'une entreprise.
+Lien entre un `Compte utilisateur` et une `Entreprise membre`. Représente le rôle d'une personne physique au sein d'une entreprise.
 
 *Entité Prisma : `Contact`*
 
@@ -84,19 +88,19 @@ Ne pas utiliser "contact" seul, qui est ambigu (personne, demande, prospect).
 
 ### 🔵 Groupe d'entreprises
 
-Ensemble nommé regroupant une Entreprise siège et ses Entreprises filiales sous une même entité de gestion.
+Ensemble nommé regroupant une `Entreprise siège` et ses Entreprises filiales sous une même entité de gestion.
 
 *Entité Prisma : `Groupe`*
 
 
 ### 🔵 Entreprise siège
 
-Entreprise membre tête de groupe, ayant la capacité d'inviter et de gérer l'inscription de ses filiales.
+`Entreprise membre` tête de groupe, ayant la capacité d'inviter et de gérer l'inscription de ses filiales.
 
 
 ### 🔵 Entreprise filiale
 
-Entreprise membre rattachée à une Entreprise siège, ayant accepté une invitation de rattachement.
+`Entreprise membre` rattachée à une `Entreprise siège`, ayant accepté une invitation de rattachement.
 
 *Relation modélisée par : `InvitationFiliale`*
 
@@ -105,21 +109,21 @@ Entreprise membre rattachée à une Entreprise siège, ayant accepté une invita
 
 ### 🟢 Référentiel annuel
 
-Ensemble structuré et versionné des Items qu'une entreprise peut promettre pour une année donnée. Chaque année dispose de son propre référentiel.
+Ensemble structuré et versionné des `Initiatives` qu'une entreprise peut adopter pour une année donnée. Chaque année dispose de son propre référentiel.
 
 *Concept proposé, n'existe pas explicitement dans le système actuel*
 
 
 ### 🟢 Axe
 
-Orientation stratégique de premier niveau regroupant plusieurs Thématiques selon une vision commune. Correspond aux "quatre axes" en cours de définition.
+Orientation stratégique de premier niveau regroupant plusieurs `Thématiques` selon une vision commune. Correspond aux "quatre axes" en cours de définition.
 
 *Exemples : "Travailler autrement", "Recruter autrement", "Former autrement", "Entreprendre autrement"*
 
 
 ### 🔵 Thématique
 
-Catégorie regroupant des Items liés à un même domaine d'action. Concept existant, conservé dans la nouvelle structure.
+Catégorie regroupant des `Initiatives` liées à un même domaine d'action. Concept existant, conservé dans la nouvelle structure.
 
 *Entité Prisma : `Thematique`*
 *Entité Hygraph : `ActionsCategory`*
@@ -129,60 +133,60 @@ Catégorie regroupant des Items liés à un même domaine d'action. Concept exis
 
 ### 🔵 Sous-thématique
 
-Niveau intermédiaire entre Thématique et Item. Concept existant, supprimé dans la nouvelle ontologie (fusion ou promotion en Thématique).
+Niveau intermédiaire entre `Thématique` et `Initiative`. Concept existant, supprimé dans la nouvelle ontologie (fusion ou promotion en `Thématique`).
 
 *Entité Prisma : `SousThematique`*
 *Entité Hygraph : `SubActionsCategory`*
 
 
-### 🟢 Item
+### 🟢 Initiative
 
-Élément atomique du référentiel qu'une Entreprise membre peut choisir de promettre. Remplace les termes "Engagement" (Prisma) et "SubCommitment" (Hygraph).
+Élément atomique du référentiel qu'une `Entreprise membre` peut choisir d'adopter. Remplace les termes "Engagement" (Prisma) et "SubCommitment" (Hygraph).
 
 *Exemples : "Accueillir des stagiaires de 3ème", "Réduire la consommation énergétique de 20%", "Atteindre 6% de BOETH"*
 
-Ne pas confondre avec Promesse (la déclaration d'une entreprise) ou Réalisation (l'accomplissement).
+Ne pas confondre avec `Ambition` (la déclaration d'une entreprise) ou `Réalisation` (l'accomplissement).
 
 
-## Cycle promesse-réalisation
+## Cycle ambition-réalisation
 
-### 🟢 Promesse
+### 🟢 Ambition
 
-Déclaration d'intention d'une Entreprise membre sur un Item du référentiel pour une année donnée. Peut être accompagnée d'un Objectif chiffré.
+Déclaration d'intention d'une `Entreprise membre` sur une `Initiative` du référentiel pour une année donnée. Peut être accompagnée d'un `Objectif chiffré`.
 
 Remplace la notion actuelle d'"engagement pris" ou de "déclaration d'engagement".
 
 *Actuel : stocké dans `MemberCommitment.engagementIds`*
 
 
-### 🔵 Objectif chiffré
+### 🟢 Objectif chiffré
 
-Valeur quantitative associée à une Promesse, représentant l'ambition mesurable de l'entreprise sur cet Item.
+Valeur quantitative associée à une `Ambition`, représentant le niveau d'engagement mesurable de l'entreprise sur cette `Initiative`.
 
-*Entité Hygraph : `Objective`*
+L'entité `Objective` Hygraph actuelle (qui stocke une question de formulaire, pas une valeur) est supprimée. L'objectif chiffré devient un simple attribut de l'`Ambition`.
 
-*Exemple : "Recruter 50 alternants", "Réduire de 20% la consommation"*
+*Exemple : "15" (pour l'initiative "Recruter des jeunes")*
 
 
 ### 🟢 Réalisation
 
-Accomplissement effectif d'une Promesse, déclaré lors du bilan annuel. Peut inclure une valeur réalisée si un Objectif chiffré était défini.
+Accomplissement effectif d'une `Ambition`, déclaré lors du bilan annuel. Peut inclure une valeur réalisée si un `Objectif chiffré` était défini.
 
 Remplace la notion actuelle d'"engagement réalisé".
 
 
 ### 🔵 Bilan Annuel
 
-Déclaration annuelle regroupant les Réalisations d'une Entreprise membre pour une année donnée.
+Déclaration annuelle regroupant les Réalisations d'une `Entreprise membre` pour une année donnée.
 
 *Entité Prisma : `Bilan`*
 
 
 ## États d'appartenance
 
-### 🟢 Statut d'Inscription
+### 🟢 Statut d'inscription
 
-État de présence d'une Entreprise membre sur la webapp. Cinq valeurs possibles :
+État de présence d'une `Entreprise membre` sur la webapp. Cinq valeurs possibles :
 
 - **Non invitée** : l'entreprise n'a jamais été invitée
 - **Invitée** : une invitation a été envoyée, en attente de réponse
@@ -193,9 +197,9 @@ Déclaration annuelle regroupant les Réalisations d'une Entreprise membre pour 
 *Actuellement déduit implicitement de la présence de certaines données*
 
 
-### 🟢 Statut de Certification
+### 🟢 Statut de certification
 
-Reconnaissance officielle d'une Entreprise membre comme membre actif de la communauté. Cinq valeurs possibles :
+Reconnaissance officielle d'une `Entreprise membre` comme membre actif de la communauté. Cinq valeurs possibles :
 
 - **Non proposée** : la certification n'a pas été proposée
 - **Proposée** : une proposition de certification a été envoyée
@@ -208,7 +212,7 @@ Reconnaissance officielle d'une Entreprise membre comme membre actif de la commu
 
 ### 🔵 Adhésion Club
 
-Lien entre une Entreprise membre et un Club territorial, matérialisant l'appartenance de l'entreprise au réseau local.
+Lien entre une `Entreprise membre` et un `Club territorial`, matérialisant l'appartenance de l'entreprise au réseau local.
 
 *Entité Prisma : `MembreClub`*
 
@@ -221,9 +225,9 @@ Lien entre une Entreprise membre et un Club territorial, matérialisant l'appart
 
 **Utiliser à la place** :
 
-- **Item** pour l'entrée du catalogue
-- **Promesse** pour la déclaration d'intention
-- **Réalisation** pour l'accomplissement
+- **`Initiative`** pour l'entrée du catalogue
+- **`Ambition`** pour la déclaration d'intention
+- **`Réalisation`** pour l'accomplissement
 - **Certification** pour l'état de participation
 
 
@@ -233,10 +237,10 @@ Lien entre une Entreprise membre et un Club territorial, matérialisant l'appart
 
 **Utiliser à la place** :
 
-- **Entreprise membre** pour l'entité `Members`
+- **`Entreprise membre`** pour l'entité `Members`
 - **Entreprise inscrite** pour le statut technique
 - **Entreprise certifiée** pour le statut métier
-- **Personne contact** pour la personne physique
+- **`Personne contact`** pour la personne physique
 
 
 ### ❌ "Contact" (utilisé seul)
@@ -245,7 +249,7 @@ Lien entre une Entreprise membre et un Club territorial, matérialisant l'appart
 
 **Utiliser à la place** :
 
-- **Personne contact** pour un individu représentant une entité
+- **`Personne contact`** pour un individu représentant une entité
 - **Demande de contact** pour une sollicitation entrante
 
 
@@ -255,35 +259,33 @@ Lien entre une Entreprise membre et un Club territorial, matérialisant l'appart
 
 **Utiliser à la place** :
 
-- **Item** pour l'élément du référentiel
-- **Thématique** pour la catégorie
+- **`Initiative`** pour l'élément du référentiel
+- **`Thématique`** pour la catégorie
 - **Contenu éditorial** pour les informations associées
-
 
 ## Correspondances terminologiques
 
-### Prisma actuel → Nouvelle terminologie
+### Prsma actuel → Nouvelle terminologie
 
-- `Members` → Entreprise membre
-- `MemberCommitment` → Promesse (relation)
-- `Thematique` → Thématique (conservé)
+- `Members` → `Entreprise membre`
+- `MemberCommitment` → `Ambition` (relation)
+- `Thematique` → `Thématique` (conservé)
 - `SousThematique` → (supprimé, fusionné)
-- `Engagement` → Item
-- `Bilan` → Bilan Annuel
+- `Engagement` → `Initiative`
+- `Bilan` → `Bilan Annuel`
 
 ### Hygraph actuel → Nouvelle terminologie
 
-- `ActionsCategory` → Thématique
+- `ActionsCategory` → `Thématique`
 - `SubActionsCategory` → (supprimé, fusionné)
-- `SubCommitment` → Item
-- `Objective` → Objectif chiffré
+- `SubCommitment` → `Initiative`
+- `Objective` → (supprimé, redistribué en attributs)
 
-### Interface actuelle → Nouvelle formulation
+### Inerface actuelle → Nouvelle formulation
 
 - "Les entreprises engagées" → "Les entreprises de la Communauté"
-- "Prenez vos engagements" → "Déclarez vos promesses"
-- "Engagement tenu" → "Promesse réalisée"
+- "Prenez vos engagements" → "Déclarez vos ambitions"
+- "Engagement tenu" → "`Ambition` concrétisée"
 - "Vous êtes membre" → "Votre entreprise est inscrite"
-
 
 *Suite : [Cycles de vie](./04-cycles-de-vie.md)*
