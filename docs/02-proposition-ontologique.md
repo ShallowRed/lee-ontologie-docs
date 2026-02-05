@@ -10,6 +10,18 @@ Cette proposition s'appuie sur cinq principes fondamentaux :
 - **Alignement des vocabulaires** : Le même terme doit être utilisé dans le code, les interfaces et les échanges métier.
 - **Versionnement du référentiel** : Chaque année dispose de son propre référentiel, permettant un suivi historique cohérent.
 
+### Nuance : accepter la polysémie résiduelle
+
+**L'unification du vocabulaire reste l'objectif prioritaire.** Quand c'est possible, un terme unique doit être adopté partout.
+
+Toutefois, certains systèmes externes (Salesforce, Metabase) ou certains usages (communication, terrain) ont leurs propres conventions qu'il serait coûteux ou contre-productif de modifier. Le Domain-Driven Design (DDD) parle de *bounded contexts* : des périmètres où un vocabulaire spécifique a sa légitimité.
+
+> **Exemple** : Le concept de "membre" désigne une inscription webapp, un Account Salesforce, ou une ligne analytique. Ces trois représentations peuvent coexister si une correspondance explicite est documentée.
+
+**Règle** : unifier d'abord, accepter la divergence uniquement quand l'unification est impossible ou disproportionnée — et toujours avec une table de correspondance.
+
+> Voir [Points de vigilance externes](./01-contexte-et-enjeux.md#points-de-vigilance-externes) pour l'inventaire des contextes concernés.
+
 ## Nouveau vocabulaire
 
 ```mermaid

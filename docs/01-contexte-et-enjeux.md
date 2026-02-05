@@ -41,7 +41,6 @@ Plusieurs systèmes coexistent et utilisent parfois des vocabulaires différents
 - **Salesforce** : CRM avec son propre vocabulaire (Account, Lead...)
 - **Metabase** : reporting analytique avec ses propres conventions
 
-
 ## Tensions identifiées
 
 ### Polysémie critique
@@ -59,11 +58,11 @@ D'autres termes présentent des ambiguïtés similaires :
 - **"Contact"** peut être une personne, une demande, ou un prospect
 - **"Action"** est utilisé à la fois pour les catégories Hygraph et le contenu éditorial
 
-### La profondeur excessive
+### Profondeur excessive du référentiel
 
 La volonté de créer quatre "axes" (Travailler autrement, Recruter autrement, etc.) sans autre ménage créerait un cinquième niveau dans la hiérarchie, rendant la structure trop profonde et difficile à naviguer.
 
-### L'implicite des statuts
+### Statuts implicites
 
 Les états d'une entreprise ne sont pas modélisés explicitement :
 
@@ -71,7 +70,7 @@ Les états d'une entreprise ne sont pas modélisés explicitement :
 - **La certification** n'est pas clairement distinguée dans le modèle
 - Les transitions d'état ne sont pas traçables
 
-### L'absence de versionnement
+### Absence de versionnement
 
 Le référentiel évolue au fil du temps, mais sans gestion formelle des versions/
 
@@ -93,11 +92,21 @@ Le référentiel évolue au fil du temps, mais sans gestion formelle des version
 
 ## Points de vigilance externes
 
-L'écosystème utilise des vocabulaires propres qu'il convient de ne pas perturber :
+L'objectif reste d'unifier le vocabulaire autant que possible. Cependant, certains contextes ont des conventions propres qu'il serait coûteux de modifier :
 
-- **Salesforce** : Account, Lead, Opportunity... (vocabulaire CRM standard)
-- **Metabase** : vues analytiques avec leurs propres conventions (FactInscriptionMembre, DimEngagement...)
-- **Clubs territoriaux** : vocabulaire oral des animateurs qui peut différer du vocabulaire officiel
-- **Communication externe** : le terme "engagé" a une valeur marketing qu'il faut préserver
+- **Salesforce** : Account, Lead, Opportunity (vocabulaire CRM standard)
+- **Metabase** : FactInscriptionMembre, DimEngagement (conventions analytiques)
+- **Clubs territoriaux** : vocabulaire oral des animateurs ("adhérent", "prospect")
+- **Communication externe** : le terme "engagé" a une valeur marketing à préserver
+
+### Chantier context mapping
+
+Pour ces cas résiduels, documenter explicitement les correspondances :
+
+1. **Lister les divergences** : quels termes diffèrent selon le contexte
+2. **Créer une table de correspondance** : webapp ↔ Salesforce ↔ Metabase
+3. **Définir le vocabulaire pivot** : celui utilisé dans les échanges entre équipes
+
+> Voir [Nuance : accepter la polysémie résiduelle](./02-proposition-ontologique.md#nuance--accepter-la-polysémie-résiduelle) pour les principes.
 
 *Suite : [Proposition ontologique](./02-proposition-ontologique.md)*
